@@ -18,7 +18,7 @@ const TransferForm = () => {
         const response = await axios.get('http://localhost:5000/get-wallets', {
           withCredentials: true, // include cookies/session
         });
-        setAccounts(response.data.accounts || []); // corrected key 'accounts'
+        setAccounts(response.data.accounts || []);
       } catch (error) {
         console.error('Error fetching accounts:', error);
         alert('Could not load accounts.');
@@ -41,7 +41,7 @@ const TransferForm = () => {
       return;
     }
 
-    setShowUPIModal(true); // Trigger UPI modal
+    setShowUPIModal(true);
   };
 
   const confirmTransfer = async () => {
@@ -59,7 +59,7 @@ const TransferForm = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/transfer', payload, {
-        withCredentials: true, // include cookies/session
+        withCredentials: true,
       });
       alert(response.data.message);
 
@@ -85,8 +85,6 @@ const TransferForm = () => {
         }}>
           <form onSubmit={handleSubmit}>
             <h2>Transfer Money</h2>
-
-            {/* From Account Dropdown */}
             <select
                 value={fromAccount}
                 onChange={(e) => setFromAccount(e.target.value)}
@@ -99,8 +97,6 @@ const TransferForm = () => {
                   </option>
               ))}
             </select>
-
-            {/* To Account Input Field */}
             <input
                 type="text"
                 value={toAccount}
@@ -108,8 +104,6 @@ const TransferForm = () => {
                 placeholder="Enter recipient account number"
                 required
             />
-
-            {/* Amount Input */}
             <input
                 type="number"
                 min="0"
@@ -119,13 +113,8 @@ const TransferForm = () => {
                 placeholder="Enter amount"
                 required
             />
-
-            {/* Submit Button */}
             <button type="submit">Continue</button>
           </form>
-
-
-          {/* UPI Modal */}
           {showUPIModal && (
               <div className="upi-modal">
                 <div className="modal-content">

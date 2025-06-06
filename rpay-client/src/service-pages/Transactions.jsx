@@ -21,7 +21,7 @@ const Transactions = () => {
 
   try {
     const response = await axios.get('http://localhost:5000/get-transactions', {
-      params: { upi_pin: upiPin },  // Corrected parameter name
+      params: { upi_pin: upiPin },
       withCredentials: true
     });
 
